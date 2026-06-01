@@ -33,8 +33,8 @@ pipeline {
                 echo '===== Deploiement ====='
                 sh '''
                 cd $PROJECT_DIR
-                docker compose down || true
-                docker compose up -d --build
+                docker-compose down || true
+                docker-compose up -d --build
                 '''
             }
         }
@@ -45,7 +45,7 @@ pipeline {
                 cd $PROJECT_DIR
                 docker ps
                 echo "--- Statut des services Compose ---"
-                docker compose ps
+                docker-compose ps
                 '''
             }
         }
