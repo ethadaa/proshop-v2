@@ -57,12 +57,10 @@ services:
     networks:
       - proshop-network
   prometheus:
-    image: prom/prometheus:latest
+    build: ./monitoring
     container_name: proshop-prometheus
     ports:
       - "9090:9090"
-    volumes:
-      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       - proshop-network
 
