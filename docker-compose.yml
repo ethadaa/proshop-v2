@@ -56,7 +56,25 @@ services:
       - backend
     networks:
       - proshop-network
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: proshop-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - proshop-network
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: proshop-grafana
+    ports:
+      - "3001:3000" # On utilise 3001 pour ne pas bloquer ton Frontend (React) qui est déjà sur 3000
+    networks:
+      - proshop-network
+    depends_on:
+      - prometheus
 volumes:
   mongo-data:
 
