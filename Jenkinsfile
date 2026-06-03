@@ -33,7 +33,7 @@ pipeline {
                 echo '===== Deploiement ====='
                 sh '''
                 cd $PROJECT_DIR
-                docker-compose down || true
+                docker-compose down -v --remove-orphans || true'
                 docker-compose up -d --build
                 '''
             }
